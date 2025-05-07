@@ -1,2 +1,2 @@
-let course:string="hello";
+let course:string="hellso";
 console.log(course);

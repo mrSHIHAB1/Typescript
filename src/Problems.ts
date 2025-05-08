@@ -1,4 +1,4 @@
-//Problem 1
+
 function formatString(input: string, toUpper?: boolean): string{
     if(toUpper||toUpper==undefined){
        
@@ -14,9 +14,11 @@ function filterByRating(items: { title: string; rating: number }[]): { title: st
     return items.filter((item)=>item.rating>=4);
   }
 
+
   function concatenateArrays<T>(...arrays: T[][]): T[] {
-    return arrays.reduce((a, b) => a.concat(b), []);
+    return arrays.reduce((mergedArray, nextArray) => mergedArray.concat(nextArray), []);
 }
+
 class Vehicle {
     private make: string;
     private year: string;
@@ -61,15 +63,15 @@ interface Product {
     price: number;
   }
   
-  function getMostExpensiveProduct(products: Product[]): Product | null{
+  function getMostExpensiveProduct(products: Product[]): Product | null {
     if (products.length === 0) {
-        return null; 
+        return null;
     }
 
-    return products.reduce((MP, CP) => {
-        return CP.price > MP.price ? CP : MP;
+    return products.reduce((mostExpensiveProduct, currentProduct) => {
+        return currentProduct.price > mostExpensiveProduct.price ? currentProduct : mostExpensiveProduct;
     });
-  }
+}
   enum Day {
     Monday,
     Tuesday,
@@ -92,8 +94,9 @@ interface Product {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (n < 0) {
-                reject("Error: Negative number not allowed"); 
-                resolve(n * n); 
+                reject("Error: Negative number not allowed");
+            } else {
+                resolve(n * n);
             }
         }, 1000);
     });
